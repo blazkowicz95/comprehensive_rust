@@ -7,7 +7,10 @@ fn main(){
     loop {
         let mut input_txt = String::new();
         let _ = io::stdin().read_line(&mut input_txt);
-        let mut num:u16 = input_txt.trim().parse().expect("Invalid");
+        let num:u16 = match input_txt.trim().parse() {
+            Ok(num) => num,
+            Err(_)  => continue,
+        };
         if rand_num == num {
             println!("Correct Guess: {}",num);
             break;
